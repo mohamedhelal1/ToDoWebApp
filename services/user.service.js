@@ -13,7 +13,7 @@ module.exports = {
             "email": {  type: Sequelize.STRING, allowNull: false ,unique: true},
             "password": { type: Sequelize.STRING, allowNull: false },
             "firstname":{ type: Sequelize.STRING, allowNull: false },
-            "Lastname":{ type: Sequelize.STRING, allowNull: false }
+            "lastname":{ type: Sequelize.STRING, allowNull: false }
         },
     },
 };
