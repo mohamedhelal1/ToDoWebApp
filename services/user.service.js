@@ -9,10 +9,11 @@ module.exports = {
     adapter: new SqlAdapter("postgres://postgres:password@localhost:5432/ToDo-DB"),// connects to local DB  (use  {user}:{password}@localhost:{portnumber}/{DB_name})
     model: {
         name: "user",
-        define: {
-            
+        define: {// schema for user table
+            "email": {  type: Sequelize.STRING, allowNull: false ,unique: true},
+            "password": { type: Sequelize.STRING, allowNull: false },
+            "firstname":{ type: Sequelize.STRING, allowNull: false },
+            "Lastname":{ type: Sequelize.STRING, allowNull: false }
         },
-        options: {
-        }
     },
 };

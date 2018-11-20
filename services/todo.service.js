@@ -11,22 +11,29 @@ module.exports = {
 	model: {
 		name: "ToDo",
 		define: {
-			
+            // schema for todo table
+            "subject": {  type: Sequelize.STRING, allowNull: false },
+            "comment": { type: Sequelize.STRING, allowNull: false },
+            "time":{ type: Sequelize.DATE, allowNull: true },
+            "userId":{ type: Sequelize.INTEGER, allowNull: false },// the todo owner
+            "reminded":{type : Sequelize.BOOLEAN,allowNull:false}// to check if the user is notified by an email
 		},
-		options: {
-		}
+		
 	},
 	actions: {
 		
 		addToDo: {
 			params: {
-				
+			"subject": "string",
+            "comment": "string",
+            "time": "string",
 			},
 			handler: async (ctx) => {
             }
         },
         getToDo: {
 			params: {
+                "id":"string"
 			},
 
 			handler: async (ctx) => {
@@ -34,14 +41,17 @@ module.exports = {
 		},
         updateToDo: {
 			params: {
-				
+                "id":"string",
+                "subject": "string",
+                "comment": "string",
+                "time": "string",
 			},
 			handler: async (ctx) => {
 			}
 		},
 		deleteToDo: {
 			params: {
-				
+				"id":"string",
 			},
 			handler: async (ctx) => {
             
@@ -49,6 +59,8 @@ module.exports = {
 		},
 		getToDos: {
 			params: {
+                "offset": "number",
+				"limit": "number"
 			},
 			handler: async (ctx) => {
 			}

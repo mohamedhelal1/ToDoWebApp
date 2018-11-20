@@ -10,6 +10,8 @@ module.exports = {
 		
 		login: {
 			params: {
+                "email":"string",
+                "password":"string"
 			},
 			handler: async (ctx) => {
 				
@@ -18,7 +20,10 @@ module.exports = {
 		signup: {
 			params:
 			{
-
+                "email":"string",
+                "password":"string",
+                "firstname":"string",
+                "lastname":"string"
 			},
 			handler:  async (ctx) => {
 					
