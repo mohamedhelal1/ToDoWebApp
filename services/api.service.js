@@ -34,8 +34,8 @@ module.exports = {
 			mergeParams: true,
 			aliases: {// declare routes
 				// auth
-				"POST login": "auth.login",
-				"POST signup": "auth.signup",
+				"POST auth/login": "auth.login",
+				"POST auth/signup": "auth.signup",
 				//ToDo
 				"POST todo": "todo.addToDo",
 				"GET todo/:id": "todo.getToDo",
