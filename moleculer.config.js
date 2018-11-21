@@ -4,7 +4,7 @@
 module.exports = {
 	namespace: "",
 	nodeID: null,
-
+	secret: "ToDosecertl8aytmngebsecret",
 	logger: true,
 	logLevel: "info",
 	logFormatter: "default",

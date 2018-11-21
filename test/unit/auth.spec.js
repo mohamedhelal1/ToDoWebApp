@@ -23,14 +23,14 @@ describe("Auth", () => {
         token = token.body.token;
     });
     /// sign up
-    it("should sign up a parent", async () => {
+    it("should sign up a user", async () => {
         var res = await chakram.post("http://localhost:3000/api" + "/auth/signup", {//sends request
             email: faker.internet.email(),
             password: "Pp123456",
             firstname: faker.name.firstName(),
             lastname: faker.name.lastName(),
         });
-        expect(token).to.have.status(200);
+        expect(res).to.have.status(200);
         expect(res.body.token).to.exist;//check if token exists 
         expect(res.body.msg).to.be.equal("signed up successfully");
     }); 
