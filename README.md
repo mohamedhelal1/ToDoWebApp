@@ -24,7 +24,8 @@ npm run ci
 # Run ESLint
 npm run lint
 ```
+``` bash
+## Note
+Before running ,Redis needs to run on port 6379 for caching and RabbitMq on port 5672 
 
-## note before running ,redis needs to run on port 6379 for caching and rabbitMq on port 5672 
-
-
+``` 
