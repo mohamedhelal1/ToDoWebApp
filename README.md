@@ -25,5 +25,6 @@ npm run ci
 npm run lint
 ```
 
+## note before running ,redis needs to run on port 6379 for caching and rabbitMq on port 5672 
 
 
