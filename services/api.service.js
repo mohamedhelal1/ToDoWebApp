@@ -35,18 +35,20 @@ module.exports = {
 			aliases: {// declare routes
 				// auth
 				"POST auth/login": "auth.login",
+				"POST auth/googlelogin": "auth.googleLogin",
 				"POST auth/signup": "auth.signup",
 				//ToDo
-				"POST todo": "todo.addToDo",
-				"GET todo/:id": "todo.getToDo",
-				"DELETE todo/:id": "todo.deleteToDo",
-				"PUT todo/:id": "todo.updateToDo",
-				"GET todos/:offset/:limit": "todo.getToDos",
+				"POST todo": "ToDo.addToDo",
+				"GET todo/:id": "ToDo.getToDo",
+				"DELETE todo/:id": "ToDo.deleteToDo",
+				"PUT todo/:id": "ToDo.updateToDo",
+				"GET todos/:offset/:limit": "ToDo.getToDos",
 			},
 			bodyParsers: {
 				json: { limit: "50mb", extended: true },
 				urlencoded: { limit: "50mb", extended: true }
-			}
+			},
+			
 		}],
 		assets: {
 			folder: "public"

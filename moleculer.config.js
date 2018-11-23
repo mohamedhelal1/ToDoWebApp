@@ -5,6 +5,8 @@ module.exports = {
 	namespace: "",
 	nodeID: null,
 	secret: "ToDosecertl8aytmngebsecret",
+	googleClientID:"638831086251-4hkhfibohnpa7ag3d4tgvmvcsjjmd7u6.apps.googleusercontent.com",
+	googleClientSecret:"ahZ_JQPL5MuVyYuGF6ZyUiXI",
 	logger: true,
 	logLevel: "info",
 	logFormatter: "default",

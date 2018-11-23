@@ -10,8 +10,10 @@ module.exports = {
     model: {
         name: "user",
         define: {// schema for user table
-            "email": {  type: Sequelize.STRING, allowNull: false ,unique: true},
-            "password": { type: Sequelize.STRING, allowNull: false },
+            "email": {  type: Sequelize.STRING ,unique: true,allowNull: false},
+            "password": { type: Sequelize.STRING },
+            "googleId":{ type: Sequelize.STRING,unique: true },
+            "type":{type: Sequelize.STRING,allowNull: false},
             "firstname":{ type: Sequelize.STRING, allowNull: false },
             "lastname":{ type: Sequelize.STRING, allowNull: false }
         },

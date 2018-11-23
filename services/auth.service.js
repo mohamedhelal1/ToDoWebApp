@@ -2,7 +2,9 @@
 var jwt = require('jsonwebtoken'),
 	config = require('../moleculer.config'),
 	bcrypt = require('bcrypt-promise'),
-	passwordValidator = require('password-validator');
+    passwordValidator = require('password-validator'),
+    passport = require('passport'),
+    GooglePlusTokenStrategy = require('passport-google-plus-token');
 
 module.exports = {
 	name: "auth",
@@ -14,17 +16,18 @@ module.exports = {
                 "password":"string"
 			},
 			handler: async (ctx) => {
-				var user = await ctx.call("user.find", { query: { email: ctx.params.email } });
-				if(!user[0]){ 
+				var user = await ctx.call("user.find", { query: { email: ctx.params.email , type:"normal" } });// find email
+				if(!user[0]){ // check if it is in db
 					ctx.meta.$statusCode = 404;
 					return{err:"email is not found"};
 				}
-				if(await bcrypt.compare(ctx.params.password, user[0].password)){
+				if(await bcrypt.compare(ctx.params.password, user[0].password)){// compare password
                     var data = {
                         "id":user[0].id,
-                        "email":user[0].email
+                        "email":user[0].email,
+                        "type":user[0].type,
                     };
-					var token= jwt.sign({data:data},config.secret,{expiresIn: '24h'});
+					var token= jwt.sign({data:data},config.secret,{expiresIn: '24h'}); // create token
 					
 					
 					return  {
@@ -63,6 +66,7 @@ module.exports = {
                 var user= await ctx.call("user.create", { // create user
                     email: ctx.params.email,
                     password: hash,
+                    type:"normal",
                     firstname:ctx.params.firstname,
                     lastname:ctx.params.lastname
                 }
@@ -77,9 +81,10 @@ module.exports = {
                 }
                 var data = {// the data in the token
                     "id":user.id,
-                    "email":user.email
+                    "email":user.email,
+                    "type":user.type
                 };
-                var token= jwt.sign({data:data},config.secret,{expiresIn: '24h'});// use jwt to make a token
+                var token= jwt.sign({data:data},config.secret,{expiresIn: '24h'}); // create token
             
 
                 return {
@@ -87,6 +92,30 @@ module.exports = {
                     "token":token
                 };
 			}
-		}
+        },
+        userData: {// decodes token
+			params: {
+				"token": "string",
+			},
+			handler: async (ctx) => {
+                var decoded = jwt.decode(ctx.params.token, {complete: true});//decode jwt token
+                console.log(decoded);
+				if(!decoded) {
+					ctx.meta.$statusCode = 401;
+					return{err:"unauthorized"};
+				}
+				return decoded.payload.data;
+			}
+		},
+        googleLogin:{
+            params:{
+                "accessToken":"string"
+            },
+            handler: async (ctx) => {
+              // todo
+            }
+            
+        }
 	}
 };
+
